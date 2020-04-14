@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h3>Your Scouted Player Register</h3></div>
-
+                <a href="/posts/create" class="btn btn-success">Create Post</a>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
