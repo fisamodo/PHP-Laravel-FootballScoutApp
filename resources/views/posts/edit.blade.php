@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Edit</h1>
-    {!! Form::open(['action'=>['PostsController@update',$post->id],'method'=>'POST']) !!}
+    {!! Form::open(['action'=>['PostsController@update',$post->id],'method'=>'POST','enctype' =>'multipart/form-data']) !!}
     <div class="form-group">
         {{Form::label('fullName', 'Full Name')}}
         {{Form::text('fullName',$post->fullName, ['class' => 'form-control', 'placeholder' =>'Full Name'])}}
@@ -72,6 +72,11 @@
     <div class="form-group">
         {{Form::label('ScoutLog', 'Scout Log')}}
         {{Form::textarea('ScoutLog',$post->ScoutLog, ['class' => 'form-control', 'placeholder' =>'Career Hightlights'])}}
+    </div>
+    <h4>Player Picture</h4>
+
+    <div class="form-group">
+        {{Form::file('cover_image')}}
     </div>
     {{Form::hidden('_method','PUT')}}
     {{Form::submit('Submit',['class'=>'btn btn-primary'])}}

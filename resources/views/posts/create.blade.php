@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Create</h1>
-    {!! Form::open(['action'=>'PostsController@store','method'=>'POST']) !!}
+    {!! Form::open(['action'=>'PostsController@store','method'=>'POST', 'enctype' =>'multipart/form-data']) !!}
     <div class="form-group">
         {{Form::label('fullName', 'Full Name')}}
         {{Form::text('fullName','', ['class' => 'form-control', 'placeholder' =>'Full Name'])}}
@@ -75,6 +75,10 @@
     <div class="form-group">
         {{Form::label('ScoutLog', 'Scout Log')}}
         {{Form::textarea('ScoutLog','', ['class' => 'form-control', 'placeholder' =>'Career Hightlights'])}}
+    </div>
+    <h4>Player Picture</h4>
+    <div class="form-group">
+        {{Form::file('cover_image')}}
     </div>
         {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}

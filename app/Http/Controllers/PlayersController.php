@@ -17,7 +17,7 @@ class PlayersController extends Controller
     public function services(){
         $data = array(
             'title' => 'Services',
-            'services' => ['WWE','WEW','AA']
+            'services' => ['Scouting','Progressing','Data Analysis']
 
         );
         return view('pages.services')->with($data);

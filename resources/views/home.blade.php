@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h3>Your Scouted Player Register</h3></div>
-                <a href="/posts/create" class="btn btn-success">Create Post</a>
+                <a href="/posts/create" class="btn btn-success" style="margin-bottom: 20px;">Create Post</a>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -19,12 +19,15 @@
                                 <th>Full Name</th>
                                 <th>Nationality</th>
                                 <th>Appearances</th>
+                                <th>Scouted At</th>
                             </tr>
                             @foreach($posts as $post)
                             <tr>
                             <td>{{$post->fullName}}</td>
                             <td>{{$post->Nationality}}</td>
                             <td>{{$post->appearance}}</td>
+                            <td>{{$post->created_at}}</td>
+
 
                                 <td><a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a></td>
                                 <td>

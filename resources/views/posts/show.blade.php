@@ -8,9 +8,11 @@
 @extends('layouts.app')
 @section('content')
     <a href="/posts" class="btn btn-default">Go back</a>
-    <h1>{{$post->fullName}}</h1><h3>{!!$post->age!!} Year of Age</h3> <h4>{!!$post->Nationality!!} Nationality</h4>
+    <h1>{{$post->fullName}}</h1><h3>{!!$post->age!!} Years of Age</h3> <h4>{!!$post->Nationality!!} Nationality</h4>
     <br>
-    <h4>{!!$post->Leauge!!} : {!!$post->Club!!}</h4>
+    <img style="width:30%;" src ="/storage/cover_images/{{$post->cover_image}}">
+
+    <h3>{!!$post->Leauge!!} / {!!$post->Club!!}</h3>
     <div style="width:70%">
        <h3><strong>Appearances:</strong> {!!$post->appearance!!}</h3>
         <h3><strong>Scored:</strong> {!!$post->goals!!}
@@ -24,6 +26,9 @@
     </div>
     <div style="width:70%">
         <h3><strong>Known traits:</strong> {!!$post->Speciality!!} </h3>
+    </div>
+    <div style="width:70%">
+        <h3><strong>Scouts Report:</strong> {!!$post->ScoutLog!!} </h3>
     </div>
     <hr>
     <h4>Scout report made on {{$post->created_at}} by Certified Scout {{$post->user->name}}</h4>    <hr>

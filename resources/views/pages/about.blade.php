@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>{{$title}}</h1>
-<p>This is the laravel app from larav</p>
+<h1>About</h1>
+<p>The general idea was to create scout-like App, to track player statistics during a season</p>
 @endsection

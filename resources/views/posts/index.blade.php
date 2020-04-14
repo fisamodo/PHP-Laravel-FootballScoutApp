@@ -9,14 +9,20 @@
     @if(count($posts)>0)
         @foreach($posts as $post)
             <div class="well">
-            <h3><a href="/posts/{{$post->id}}">{{$post->fullName}}</a></h3>
-             <div>
-             <li>{{$post->Nationality}} Nationality</li>
-             <li>{{$post->Leauge}}</li>
-             <li>{{$post->Club}}</li>
-             </div>   
-             
-             <small>Scouted at {{$post->created_at}} by {{$post->user->name}}</small>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <h3><a href="/posts/{{$post->id}}">{{$post->fullName}}</a></h3>
+                        <li>{{$post->Nationality}} Nationality</li>
+                            <li>{{$post->Leauge}}</li>
+                            <li>{{$post->Club}}</li>    
+                            <small>Scouted at {{$post->created_at}} by {{$post->user->name}}</small>
+                    </div>
+                    <div class="col-md-6 col-sm-6" style="text-align:right;">
+                        <img style="width:50%;"    src ="/storage/cover_images/{{$post->cover_image}}">
+
+                    </div>
+            
+                </div>
             </div>
         @endforeach
     @else
