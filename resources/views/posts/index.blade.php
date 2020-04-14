@@ -7,6 +7,7 @@
     <hr>
 
     @if(count($posts)>0)
+    <h3>There are currently {{count($posts)}} players in the Player Register</h3>
         @foreach($posts as $post)
             <div class="well">
                 <div class="row">

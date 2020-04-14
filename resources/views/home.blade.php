@@ -6,6 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h3>Your Scouted Player Register</h3></div>
+                <h3>There are currently {{count($posts)}} players that you scouted</h3>
+
                 <a href="/posts/create" class="btn btn-success" style="margin-bottom: 20px;">Create Post</a>
                 <div class="card-body">
                     @if (session('status'))
