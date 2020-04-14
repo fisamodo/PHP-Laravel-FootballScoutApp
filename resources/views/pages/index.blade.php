@@ -2,8 +2,7 @@
        
 @section('content')
 <div class="jumbotron text-center">
-    <h1>Transfermarkt</h1>
+    <h1>Player Tracker</h1>
     <p>Track player stats</p>
-    <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class="btn btn-success btn-lg" href="/register" role="button">Register</a></p>
 </div>
 @endsection

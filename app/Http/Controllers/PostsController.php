@@ -15,7 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('appearance','desc')->get();
+        $posts = Post::orderBy('appearance','desc')->paginate(10);
+
         // $posts = Post::orderBy('title','desc')->take(1)->get();
         // $posts = Post:all();
         // $posts = DB::select('SELECT * FROM posts');
@@ -69,6 +70,7 @@ class PostsController extends Controller
         $post->appearance = $request->input('appearance');
         $post->goals = $request->input('goals');
         $post->assists = $request->input('assists');
+        $post->user_id = auth()->user()->id;
         
         $post->age = $request->input('age');
         $post->save();
@@ -97,7 +99,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('post',$post);
     }
 
     /**
@@ -109,7 +112,41 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'fullName' => 'required',
+            'Nationality' =>'required', 
+            'appearance' => 'required',
+            'goals' => 'required',
+            'assists' => 'required',
+            'age' => 'required',
+            'Position' => 'required'
+        ]);
+
+        
+
+        $post = Post::find($id);
+        $arrayToString = implode(',', $request->input('Speciality'));
+        $inputValue['Speciality'] = $arrayToString;
+        $post->Speciality = $inputValue['Speciality'];
+
+        $arrayToString = implode(',', $request->input('Position'));
+        $inputValue['Position'] = $arrayToString;
+        $post->Position = $inputValue['Position'];
+
+
+        $post->fullName = $request->input('fullName');
+        $post->Nationality = $request->input('Nationality');
+        $post->Leauge = $request->input('Leauge');
+        $post->Club = $request->input('Club');
+        $post->appearance = $request->input('appearance');
+        $post->goals = $request->input('goals');
+        $post->assists = $request->input('assists');
+        
+        $post->age = $request->input('age');
+        $post->save();
+        
+        return redirect('/posts')->with('success','Post Updated');
+
     }
 
     /**
@@ -120,6 +157,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/posts')->with('success','Post Removed');
+
     }
 }

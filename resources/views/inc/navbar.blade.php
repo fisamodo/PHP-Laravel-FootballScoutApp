@@ -9,11 +9,33 @@
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
-            <li><a href="/players">Players</a></li>
+            <li><a href="/posts">Players</a></li>
         </ul>
+
+        
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/posts/create">Insert a Player</a></li>
-        </ul>
+            @if (Auth::guest())
+            <li><a href="{{route('login')}}">Login</a></li>
+            <li><a href="{{route('register')}}">Register</a></li>
+        @else
+        <li class="dropdown">
+            
+
+                <li><a href="/home">Your Scouted Player Register</a></li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+           
+        </li>
+        @endif
     </div>
 </div>
 </nav>

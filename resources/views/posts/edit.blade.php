@@ -2,39 +2,39 @@
 
 @section('content')
 
-    <h1>Create</h1>
-    {!! Form::open(['action'=>'PostsController@store','method'=>'POST']) !!}
+    <h1>Edit</h1>
+    {!! Form::open(['action'=>['PostsController@update',$post->id],'method'=>'POST']) !!}
     <div class="form-group">
         {{Form::label('fullName', 'Full Name')}}
-        {{Form::text('fullName','', ['class' => 'form-control', 'placeholder' =>'Full Name'])}}
+        {{Form::text('fullName',$post->fullName, ['class' => 'form-control', 'placeholder' =>'Full Name'])}}
     </div>
     <div class="form-group">
         {{Form::label('Nationality', 'Nationality')}}
-        {{Form::text('Nationality','', ['class' => 'form-control', 'placeholder' =>'Nationality'])}}
+        {{Form::text('Nationality',$post->Nationality, ['class' => 'form-control', 'placeholder' =>'Nationality'])}}
     </div>
     <div class="form-group">
         {{Form::label('Leauge', 'Leauge')}}
-        {{Form::text('Leauge','Free Agent', ['class' => 'form-control', 'placeholder' =>'Leauge'])}}
+        {{Form::text('Leauge',$post->Leauge, ['class' => 'form-control', 'placeholder' =>'Leauge'])}}
     </div>
     <div class="form-group">
         {{Form::label('Club', 'Club')}}
-        {{Form::text('Club','Free Agent', ['class' => 'form-control', 'placeholder' =>'Club'])}}
+        {{Form::text('Club',$post->Club, ['class' => 'form-control', 'placeholder' =>'Club'])}}
     </div>
     <div class="form-group">
         {{Form::label('appearance', 'Number of Appearances')}}
-        {{Form::number('appearance','', ['class' => 'form-control', 'placeholder' =>'Number of Appearances'])}}
+        {{Form::number('appearance',$post->appearance, ['class' => 'form-control', 'placeholder' =>'Number of Appearances'])}}
     </div>
     <div class="form-group">
         {{Form::label('goals', 'Number of Goals')}}
-        {{Form::number('goals','', ['class' => 'form-control', 'placeholder' =>'Number of goals'])}}
+        {{Form::number('goals',$post->goals, ['class' => 'form-control', 'placeholder' =>'Number of goals'])}}
     </div>
     <div class="form-group">
         {{Form::label('assists', 'Number of Assists')}}
-        {{Form::number('assists','', ['class' => 'form-control', 'placeholder' =>'Number of Assists'])}}
+        {{Form::number('assists',$post->assists, ['class' => 'form-control', 'placeholder' =>'Number of Assists'])}}
     </div>
     <div class="form-group" >
-        <label class="form-check-label" style="margin-right:50px;" > <h3>Special Attributes</h3> 
-        <input class="form-check-input" value="No Speciality" type="checkbox" name="Speciality[]" checked> No Speciality <br>
+        <label class="form-check-label" style="margin-right:50px;" > <h3>Special Attributes</h3>
+        <input class="form-check-input" value="No Speciality" type="checkbox" name="Speciality[]" checked> No Speciality <br> 
         <input class="form-check-input" value="Strength" type="checkbox" name="Speciality[]"> Strength <br>
         <input class="form-check-input" value="Composure" type="checkbox" name="Speciality[]"> Composure <br>
         <input class="form-check-input" value="Game Decider" type="checkbox" name="Speciality[]"> Game Decider <br>
@@ -45,9 +45,6 @@
         <input class="form-check-input" value="Young prospect" type="checkbox" name="Speciality[]"> Young prospect <br>
         <input class="form-check-input" value="Maestro" type="checkbox" name="Speciality[]"> Maestro <br>
         <input class="form-check-input" value="Initiator" type="checkbox" name="Speciality[]"> Initiator <br>
-        
-
-        <br>
         <br>
 
         </label>
@@ -70,13 +67,14 @@
     <div>
     <div class="form-group">
         {{Form::label('age', 'Years of Age')}}
-        {{Form::number('age','', ['class' => 'form-control', 'placeholder' =>'Years of Age'])}}
+        {{Form::number('age',$post->age, ['class' => 'form-control', 'placeholder' =>'Years of Age'])}}
     </div>
     <div class="form-group">
         {{Form::label('ScoutLog', 'Scout Log')}}
-        {{Form::textarea('ScoutLog','', ['class' => 'form-control', 'placeholder' =>'Career Hightlights'])}}
+        {{Form::textarea('ScoutLog',$post->ScoutLog, ['class' => 'form-control', 'placeholder' =>'Career Hightlights'])}}
     </div>
-        {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+    {{Form::hidden('_method','PUT')}}
+    {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
     
 @endsection
