@@ -17,8 +17,12 @@
         <tbody>
           <tr>
             <th scope="row">{{$matches['date']}}</th>
-            <td style="width:250px">{{$matches['team1']['name']}}</td>
-            <td style="width:250px">{{$matches['team2']['name']}}</td>
+            <td style="width:250px">{{$matches['team1']['name']}}
+            <img style="width:10%;" src ="/storage/crest_images/{{$matches['team1']['key']}}.jpg">
+            </td>
+            <td style="width:250px">{{$matches['team2']['name']}}
+            <img style="width:10%;" src ="/storage/crest_images/{{$matches['team2']['key']}}.jpg">
+            </td>
             @if($matches['score1']===null)
             <td>To be</td>
             @else
