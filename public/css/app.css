@@ -20,6 +20,8 @@ body {
   margin: 0;
 }
 
+
+
 article,
 aside,
 details,
@@ -220,6 +222,7 @@ optgroup {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  
 }
 
 td,

@@ -1,29 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-@foreach($fixtures['rounds'] as $rounds)
-    {{$rounds['name']}} <br>
-    <div class="table">
-        
-        <div class="row">
-    @foreach($rounds['matches'] as $matches)
-    <div class="cell">
-    {{$matches['date']}} <br>
-    {{$matches['team1']['name']}} <br>
-    {{$matches['team1']['code']}} <br>
-    {{$matches['team2']['name']}} <br>
-    {{$matches['team2']['code']}} <br>
-    @if($matches['score1']===null)
-    <h4>To be played</h4>
-    @else
-    {{$matches['score1']}} <br>
-    {{$matches['score2']}} <br>
+<div class="container">
+    <h2 style="text-align: center;">{{$fixtures['name']}}</h2>
+    @foreach($fixtures['rounds'] as $rounds)
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Team 1</th>
+                <th scope="col">Team 2</th>
+                <th scope="col">Result</th>
+              </tr>
+        </thead>
+        @foreach($rounds['matches'] as $matches)
+        <tbody>
+          <tr>
+            <th scope="row">{{$matches['date']}}</th>
+            <td style="width:250px">{{$matches['team1']['name']}}</td>
+            <td style="width:250px">{{$matches['team2']['name']}}</td>
+            @if($matches['score1']===null)
+            <td>To be</td>
+            @else
+            <td>{{$matches['score1']}}--{{$matches['score2']}}</td>
+            @endif
+          </tr>
+          @endforeach
+          @endforeach
+        </tbody>
     </div>
-    @endif
-@endforeach
-@endforeach
+        
+    
 
 @endsection

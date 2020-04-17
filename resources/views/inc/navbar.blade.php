@@ -10,6 +10,7 @@
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/posts">Players</a></li>
+            <li><a href="/api_data">Premier Leauge Standings</a></li>
         </ul>
 
         
