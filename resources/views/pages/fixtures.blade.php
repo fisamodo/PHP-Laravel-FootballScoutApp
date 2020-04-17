@@ -12,6 +12,7 @@
                 <th scope="col">Team 2</th>
                 <th scope="col">Result</th>
               </tr>
+              
         </thead>
         @foreach($rounds['matches'] as $matches)
         <tbody>
