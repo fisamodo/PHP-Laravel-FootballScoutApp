@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
 
 class PostsController extends Controller
 {
@@ -112,7 +113,23 @@ class PostsController extends Controller
         $post->age = $request->input('age');
         $post->ScoutLog = $request->input('ScoutLog');
         $post->save();
+
+
+        $data = '';
+        $data .= '<h1>Ispis podataka o igraču</h1>';
+        $data .= '<strong>Full Name</strong>' . $request->input('fullName') . '<br>';
+        $data .= '<strong>AGE</strong>' . $request->input('age') . '<br>';
+
+        $data .= '<strong>Nationality</strong>' . $request->input('Nationality') . '<br>';
+        $data .= '<strong>Current club</strong>' . $request->input('Leauge') . '--' . $request->input('Club') . '<br>';
+        $data .= '<strong>Current season involvement</strong> <br>' . 'Appearances -- ' . $request->input('appearance') . 'Goals--' . $request->input('goals') . 'Assists -- ' . $request->input('assists') . '<br>';
         
+        $dompdf = new Dompdf();
+        
+        $dompdf->loadHtml($data);
+        $dompdf->setPaper('A4','landscape');
+        $dompdf->render();
+        $dompdf->stream("pdf_filename_".rand(10,1000).".pdf", array("Attachment" => true));        
         return redirect('/posts')->with('success','Post Created');
 
     }
@@ -126,7 +143,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post',$post);
+         return view('posts.show')->with('post',$post);
     }
 
     /**
@@ -232,5 +249,29 @@ class PostsController extends Controller
         $post->delete();
         return redirect('/posts')->with('success','Post Removed');
 
+    }
+
+    public function exportAsPDF($id){
+
+        $post = DB::table('posts')->where('id', $id)->get()->toArray();
+                
+        $data = '';
+        $data .= '<h1>Ispis podataka o igracu</h1>';
+        $data .= '<strong>Full Name:</strong> ' . $post[0]->fullName . '<br>';
+        $data .= '<strong>AGE:</strong> ' . $post[0]->age . '<br>';
+
+        $data .= '<strong>Nationality:</strong> ' . $post[0]->Nationality . '<br>';
+        $data .= '<strong>Current Leauge/Club:</strong> ' . $post[0]->Leauge . ' / ' . $post[0]->Club . '<br>';
+        $data .= '<strong>Current season involvement: </strong> <br> Appearances = ' . $post[0]->appearance . ' <br> Goals = ' . $post[0]->goals . '<br> Assists = ' . $post[0]->assists . '<br>';
+        $data .= '<strong>Speciality:</strong> ' . $post[0]->Speciality . '<br>';
+        $data .= '<strong>Position:</strong> ' . $post[0]->Position . '<br>';
+        $data .= '<strong>Extra information:</strong> ' . $post[0]->ScoutLog . '<br>';
+       
+        $dompdf = new Dompdf();
+        
+        $dompdf->loadHtml($data);
+        $dompdf->setPaper('A4','landscape');
+        $dompdf->render();
+        $dompdf->stream("pdf_filename_".rand(10,1000).".pdf", array("Attachment" => true));
     }
 }

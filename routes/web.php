@@ -26,4 +26,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/api_data', 'PlayersController@getApiData');
+Route::get('/exportAsPDF/{id}','PostsController@exportAsPDF');
 

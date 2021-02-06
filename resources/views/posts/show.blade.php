@@ -32,6 +32,8 @@
     </div>
     <hr>
     <h4>Scout report made on {{$post->created_at}} by Certified Scout {{$post->user->name}}</h4>    <hr>
+    <a href="/exportAsPDF/{{$post->id}}" class="btn btn-default">Export as PDF</a><hr>
+
     @if(!Auth::guest())
     @if(Auth::user()->id == $post->user_id)
     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>

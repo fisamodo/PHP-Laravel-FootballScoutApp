@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \GuzzleHttp\Client;
-use App\Post;
+use App\Get;
+use Dompdf\Dompdf;
+use DB;
+
 
 class PlayersController extends Controller
 {
@@ -32,4 +35,5 @@ class PlayersController extends Controller
         
         
     }
+    
 }
