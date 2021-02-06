@@ -272,6 +272,6 @@ class PostsController extends Controller
         $dompdf->loadHtml($data);
         $dompdf->setPaper('A4','landscape');
         $dompdf->render();
-        $dompdf->stream("pdf_filename_".rand(10,1000).".pdf", array("Attachment" => true));
+        $dompdf->stream("pdf_report_".$post[0]->fullName .'' .rand(10,1000).".pdf", array("Attachment" => true));
     }
 }
